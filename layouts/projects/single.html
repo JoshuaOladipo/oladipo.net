@@ -1,0 +1,9 @@
+{{ define "main" }}
+<article class="article">
+  <header class="page-header"><p class="eyebrow">Project</p><h1>{{ .Title }}</h1>{{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  <div class="project-links">{{ with .Params.projectURL }}<a class="button" href="{{ . }}">Visit project</a>{{ end }}{{ with .Params.repositoryURL }}<a href="{{ . }}">View source</a>{{ end }}</div></header>
+  {{ with .Params.image }}<figure><img src="{{ . | relURL }}" alt="{{ $.Params.imageAlt }}"></figure>{{ end }}
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{ end }}
+

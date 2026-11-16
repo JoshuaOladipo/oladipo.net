@@ -1,0 +1,44 @@
+baseURL: https://oladipo.net/
+languageCode: en-us
+title: Joshua Oladipo
+copyright: "© Joshua Oladipo"
+enableRobotsTXT: true
+enableGitInfo: false
+pagination:
+  pagerSize: 8
+taxonomies:
+  tag: tags
+outputs:
+  home: [HTML, RSS]
+  section: [HTML, RSS]
+  taxonomy: [HTML, RSS]
+params:
+  description: "The personal website, writing, and projects of Joshua Oladipo."
+  author: Joshua Oladipo
+  introduction: "Welcome. This is where I share my writing and projects."
+  profileImage: images/oladipo-2.jpeg
+  profileImageAlt: "Portrait of Joshua Oladipo"
+  social: []
+menus:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Writing
+      pageRef: /blog
+      weight: 20
+    - name: Projects
+      pageRef: /projects
+      weight: 30
+    - name: About
+      pageRef: /about
+      weight: 40
+markup:
+  goldmark:
+    renderer:
+      unsafe: false
+  highlight:
+    noClasses: false
+minify:
+  minifyOutput: true
+

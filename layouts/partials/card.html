@@ -1,0 +1,6 @@
+<article class="card">
+  <p class="card-meta">{{ if eq .Section "blog" }}{{ .Date.Format "2 January 2006" }}{{ else }}Project{{ end }}</p>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{ with .Description }}<p>{{ . }}</p>{{ end }}
+</article>
+

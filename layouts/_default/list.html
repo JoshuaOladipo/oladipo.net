@@ -1,0 +1,6 @@
+{{ define "main" }}
+<header class="page-header"><p class="eyebrow">{{ if eq .Section "blog" }}Journal{{ else }}Collection{{ end }}</p><h1>{{ .Title }}</h1>{{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}</header>
+{{ $pages := .RegularPages.ByDate.Reverse }}
+{{ if $pages }}<div class="list-stack">{{ range (.Paginate $pages).Pages }}{{ partial "card.html" . }}{{ end }}</div>{{ template "_internal/pagination.html" . }}{{ else }}<p class="empty-state">Nothing published here yet.</p>{{ end }}
+{{ end }}
+

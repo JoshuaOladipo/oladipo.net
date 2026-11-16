@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="article">
+  <header class="page-header">
+    {{ if eq .Section "blog" }}<p class="eyebrow"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time></p>{{ end }}
+    <h1>{{ .Title }}</h1>{{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+  <div class="prose">{{ .Content }}</div>
+  {{ with .Params.tags }}<footer class="tags" aria-label="Tags">{{ range . }}<a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">#{{ . }}</a>{{ end }}</footer>{{ end }}
+</article>
+{{ end }}
+

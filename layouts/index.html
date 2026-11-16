@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="hero">
+  <div>
+    <p class="eyebrow">Hello, I’m</p>
+    <h1>Joshua Oladipo</h1>
+    <p class="lede">{{ site.Params.introduction }}</p>
+    <div class="hero-links"><a class="button" href="{{ "/about/" | relURL }}">More about me</a><a href="{{ "/projects/" | relURL }}">View projects</a></div>
+  </div>
+  {{ with resources.Get site.Params.profileImage }}
+    {{ $small := .Fill "480x480 Center webp q82" }}{{ $large := .Fill "760x760 Center webp q84" }}
+    <picture class="portrait"><source srcset="{{ $small.RelPermalink }} 480w, {{ $large.RelPermalink }} 760w" type="image/webp"><img src="{{ $small.RelPermalink }}" width="480" height="480" alt="{{ site.Params.profileImageAlt }}" fetchpriority="high"></picture>
+  {{ end }}
+</section>
+<section class="home-section" aria-labelledby="recent-writing"><div class="section-heading"><h2 id="recent-writing">Recent writing</h2><a href="{{ "/blog/" | relURL }}">All writing</a></div>
+  {{ $posts := where site.RegularPages "Section" "blog" }}
+  {{ if $posts }}<div class="card-grid">{{ range first 3 $posts.ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}</div>{{ else }}<p class="empty-state">New writing will appear here.</p>{{ end }}
+</section>
+<section class="home-section" aria-labelledby="selected-projects"><div class="section-heading"><h2 id="selected-projects">Selected projects</h2><a href="{{ "/projects/" | relURL }}">All projects</a></div>
+  {{ $projects := where (where site.RegularPages "Section" "projects") "Params.featured" true }}
+  {{ if $projects }}<div class="card-grid">{{ range first 3 $projects.ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}</div>{{ else }}<p class="empty-state">Selected projects will appear here once verified.</p>{{ end }}
+</section>
+{{ end }}
+
